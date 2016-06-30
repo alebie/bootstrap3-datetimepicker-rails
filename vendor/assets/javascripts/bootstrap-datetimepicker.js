@@ -1500,7 +1500,7 @@
                 throw new TypeError('date() parameter must be one of [null, string, moment or Date]');
             }
 
-            setValue(newDate === null ? null : parseInputDate(newDate));
+            setValue(newDate === null || !isValid(newDate) ? null : parseInputDate(newDate));
             return picker;
         };
 
@@ -1585,7 +1585,6 @@
                 throw new TypeError('disabledDates() expects an array parameter');
             }
             options.disabledDates = indexGivenDates(dates);
-            options.enabledDates = false;
             update();
             return picker;
         };
@@ -1612,7 +1611,6 @@
                 throw new TypeError('enabledDates() expects an array parameter');
             }
             options.enabledDates = indexGivenDates(dates);
-            options.disabledDates = false;
             update();
             return picker;
         };
